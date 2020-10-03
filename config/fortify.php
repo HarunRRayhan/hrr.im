@@ -74,7 +74,7 @@ return [
     |
     */
 
-    'middleware' => ['web'],
+    'middleware' => [ 'web' ],
 
     /*
     |--------------------------------------------------------------------------
@@ -103,14 +103,15 @@ return [
     */
 
     'features' => [
-        Features::registration(),
+//        Features::registration(),
         Features::resetPasswords(),
-        // Features::emailVerification(),
+        Features::emailVerification(),
         Features::updateProfileInformation(),
         Features::updatePasswords(),
-        Features::twoFactorAuthentication([
+        Features::twoFactorAuthentication( [
             'confirmPassword' => true,
-        ]),
+        ] ),
     ],
+    'domain'=>'dash.'.config('app.domain')
 
 ];

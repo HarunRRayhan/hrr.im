@@ -13,10 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/**
+ * Sub-domains
+ */
+Route::domain( '{dash}.' . config( 'app.domain' ) )->group( function () {
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia\Inertia::render('Dashboard');
-})->name('dashboard');
+    Route::middleware( [ 'auth:sanctum', 'verified' ] )->get( '/', function () {
+        return Inertia\Inertia::render( 'Dashboard' );
+    } )->name( 'dashboard' );
+} );
+
+/**
+ * Main Domains
+ */
+Route::domain( config( 'app.domain' ) )->group( function () {
+    Route::get( '/', function () {
+        return 'Hello from the main domain';
+    } );
+
+} );
+
