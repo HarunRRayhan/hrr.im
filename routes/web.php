@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::domain( '{dash}.' . config( 'app.domain' ) )->group( function () {
 
     Route::middleware( [ 'auth:sanctum', 'verified' ] )->get( '/', function () {
-        return Inertia\Inertia::render( 'Dashboard' );
+        return Inertia\Inertia::render( 'Links/Index' );
     } )->name( 'dashboard' );
 } );
 
