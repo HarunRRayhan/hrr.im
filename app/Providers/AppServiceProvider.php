@@ -27,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerInertia();
+        $this->registerTelescope();
     }
 
     public function registerInertia()
@@ -52,5 +53,13 @@ class AppServiceProvider extends ServiceProvider
                 ];
             },
         ] );
+    }
+
+    public function registerTelescope()
+    {
+        if ( $this->app->isLocal() ) {
+            $this->app->register( \Laravel\Telescope\TelescopeServiceProvider::class );
+            $this->app->register( TelescopeServiceProvider::class );
+        }
     }
 }
