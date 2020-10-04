@@ -12,6 +12,7 @@
 
 <script>
     export default {
+        name: "DropdownLink",
         props: ['href', 'as']
     }
 </script>
