@@ -13,6 +13,10 @@ module.exports = {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
+            boxShadow: theme => ({
+                outline: '0 0 0 2px ' + theme('colors.indigo.500'),
+            }),
+            fill: theme => theme('colors'),
         },
     },
 
