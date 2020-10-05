@@ -11,7 +11,12 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                sans: ['Cerebri Sans', ...defaultTheme.fontFamily.sans],
+            },
+            colors: {
+                app: {
+                    '200': '#edf2f7'
+                }
             },
             boxShadow: theme => ({
                 outline: '0 0 0 2px ' + theme('colors.indigo.500'),
