@@ -16,12 +16,13 @@ use Illuminate\Support\Facades\Route;
 /**
  * Sub-domains
  */
-Route::domain( '{dash}.' . config( 'app.domain' ) )->group( function () {
-
-    Route::middleware( [ 'auth:sanctum', 'verified' ] )->get( '/', function () {
-        return Inertia\Inertia::render( 'Links/Index' );
-    } )->name( 'dashboard' );
-} );
+Route::domain( 'dash.' . config( 'app.domain' ) )
+     ->middleware( [ 'auth:sanctum', 'verified' ] )
+     ->group( function () {
+         Route::get( '/', function () {
+             return Inertia\Inertia::render( 'Links/Index' );
+         } )->name( 'dashboard' );
+     } );
 
 /**
  * Main Domains
