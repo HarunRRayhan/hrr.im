@@ -16,3 +16,6 @@ public/css/
 public/*.json
 storage/debugbar/
 public/vendor/telescope/
+.phpstorm.meta.php
+_ide_helper.php
+
