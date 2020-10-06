@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
  * Sub-domains
  */
 Route::domain( 'dash.' . config( 'app.domain' ) )
-     ->middleware( [ 'auth:sanctum', 'verified' ] )
+     ->middleware( [ 'auth', 'verified' ] )
      ->group( function () {
          Route::get( '/', function () {
              return Inertia\Inertia::render( 'Links/Index' );
