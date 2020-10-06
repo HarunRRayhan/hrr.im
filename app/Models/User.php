@@ -33,21 +33,21 @@ use Laravel\Sanctum\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
- * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereCurrentTeamId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereProfilePhotoPath($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorRecoveryCodes($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorSecret($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereCurrentTeamId( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereId( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereName( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereProfilePhotoPath( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorRecoveryCodes( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereTwoFactorSecret( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt( $value )
  * @mixin \Eloquent
  */
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
