@@ -4,8 +4,8 @@
         <div class="mb-6 flex justify-between items-center">
             <search-filter class="w-full max-w-md mr-4"></search-filter>
             <inertia-link class="btn-indigo" href="/">
-                <span>Create</span>
-                <span class="hidden md:inline">Contact</span>
+                <span>Add</span>
+                <span class="hidden md:inline">Shortlink</span>
             </inertia-link>
         </div>
         <div class="bg-white rounded shadow overflow-x-auto">
@@ -53,13 +53,8 @@
                         </inertia-link>
                     </td>
                     <td class="border-t">
-                        <inertia-link
-                            class="px-6 py-4 flex items-center"
-                            href="/"
-                            tabindex="-1"
-                        >
-                            type
-                        </inertia-link>
+                        <label-public v-if="link.is_public"/>
+                        <label-private v-else />
                     </td>
                     <td class="border-t w-px">
                         <inertia-link
@@ -76,7 +71,7 @@
                 </tr>
             </table>
         </div>
-                <pagination :links="links.links"/>
+        <pagination :links="links.links"/>
     </div>
 </template>
 
@@ -86,6 +81,8 @@ import LinkTable from "../../Shared/LinkTable";
 import SearchFilter from "../../Shared/SearchFilter";
 import Icon from "../../Shared/Icon";
 import Pagination from "../../Shared/Pagination";
+import LabelPublic from "../../Shared/LabelPublic";
+import LabelPrivate from "../../Shared/LabelPrivate";
 
 export default {
     components: {
@@ -94,6 +91,8 @@ export default {
         SearchFilter,
         Icon,
         Pagination,
+        LabelPublic,
+        LabelPrivate,
     },
     metaInfo: {title: 'Dashboard'},
     layout: AppLayout,
