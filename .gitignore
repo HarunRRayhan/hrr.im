@@ -18,4 +18,5 @@ storage/debugbar/
 public/vendor/telescope/
 .phpstorm.meta.php
 _ide_helper.php
+.env.dusk.local
 
