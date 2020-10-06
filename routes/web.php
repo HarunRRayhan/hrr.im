@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LinkController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::domain( 'dash.' . config( 'app.domain' ) )
      ->middleware( [ 'auth', 'verified' ] )
      ->group( function () {
-         Route::get( '/', function () {
-             return Inertia\Inertia::render( 'Links/Index' );
-         } )->name( 'dashboard' );
+         Route::get( '/', [ LinkController::class, 'index' ] )->name( 'dashboard' );
      } );
 
 /**
@@ -30,7 +29,11 @@ Route::domain( 'dash.' . config( 'app.domain' ) )
 Route::domain( config( 'app.domain' ) )->group( function () {
     Route::get( '/', function () {
         return 'Hello from the main domain';
-    } );
+    } )->name( 'home' );
+
+    Route::get( '{link:slug}/{secret?}', function ( \App\Models\Link $link, string $secret = null ) {
+        return $link;
+    } )->name( 'shortlink' );
 
 } );
 
