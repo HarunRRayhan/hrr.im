@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Link;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -12,12 +13,15 @@ class LinkController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
+     *
      * @return \Inertia\Response
      */
-    public function index(): Response
+    public function index( Request $request ): Response
     {
         return Inertia::render( 'Links/Index', [
-            'links' => Link::paginate(),
+            'filters' => $request->all( 'search' ),
+            'links'   => Link::search( $request->search )->paginate(),
         ] );
     }
 
