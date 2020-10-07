@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 /**
  * App\Models\Link
@@ -33,7 +34,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Link extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     protected $guarded = [];
 
@@ -46,6 +47,11 @@ class Link extends Model
 
     public function getIsPublicAttribute(): bool
     {
-        return (bool) !$this->secret;
+        return (bool) ! $this->secret;
+    }
+
+    public function toSearchableArray(): array
+    {
+        return $this->only( [ 'id', 'label', 'slug', 'full_link' ] );
     }
 }
