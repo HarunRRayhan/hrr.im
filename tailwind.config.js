@@ -27,6 +27,10 @@ module.exports = {
 
     variants: {
         opacity: ['responsive', 'hover', 'focus', 'disabled'],
+        fill: ['responsive', 'hover', 'focus', 'group-hover'],
+        textColor: ['responsive', 'hover', 'focus', 'group-hover'],
+        zIndex: ['responsive', 'focus'],
+        display: ['responsive', 'hover', 'focus', 'group-hover'],
     },
 
     plugins: [require('@tailwindcss/ui')],
