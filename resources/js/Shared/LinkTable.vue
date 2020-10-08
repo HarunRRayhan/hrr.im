@@ -17,7 +17,7 @@
                 <td class="border-t w-px">
                     <inertia-link
                         class="px-4 flex items-center"
-                        href="/"
+                        :href="route('links.show', link)"
                         tabindex="-1"
                     >
                         <icon name="view-tile" class="block w-5 h-5 fill-gray-500 hover:fill-indigo-700"/>
@@ -26,7 +26,7 @@
                 <td class="border-t w-px">
                     <inertia-link
                         class="px-4 flex items-center"
-                        href="/"
+                        :href="route('links.edit', link)"
                         tabindex="-1"
                     >
                         <icon name="edit" class="block w-6 h-6 fill-gray-500 hover:fill-indigo-700"/>

@@ -3,7 +3,10 @@
         <h1 class="mb-8 font-bold text-3xl">Dashboard</h1>
         <div class="mb-6 flex justify-between items-center">
             <search-filter v-model="form.search" class="w-full max-w-md mr-4" @reset="reset"/>
-            <inertia-link class="btn-indigo" href="/">
+            <inertia-link
+                class="btn-indigo"
+                :href="route('links.create')"
+            >
                 <span>Add</span>
                 <span class="hidden md:inline">Shortlink</span>
             </inertia-link>
