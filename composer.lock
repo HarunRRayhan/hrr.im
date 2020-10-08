@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2bff827c129156a1dedf0277f4d8ec31",
+    "content-hash": "46c8b30dac6eaf2a70244fcb0f2a9954",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -176,6 +176,52 @@
             "description": "BaconQrCode is a QR code generator for PHP.",
             "homepage": "https://github.com/Bacon/BaconQrCode",
             "time": "2020-07-30T16:40:58+00:00"
+        },
+        {
+            "name": "brianfreytag/php-bijective",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brianfreytag/php-bijective.git",
+                "reference": "e7df2a7c20ae97dd25e57b3e7d70836ea68e7d42"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brianfreytag/php-bijective/zipball/e7df2a7c20ae97dd25e57b3e7d70836ea68e7d42",
+                "reference": "e7df2a7c20ae97dd25e57b3e7d70836ea68e7d42",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=3.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Bijective": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Freytag",
+                    "email": "brian@idltg.in",
+                    "homepage": "http://freytag.technology"
+                }
+            ],
+            "description": "Encodes any integer into a base(n) string",
+            "homepage": "http://www.github.com/brianfreytag/php-bijective",
+            "keywords": [
+                "base_convert",
+                "bijective",
+                "php"
+            ],
+            "time": "2014-11-19T17:22:37+00:00"
         },
         {
             "name": "brick/math",
