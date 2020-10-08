@@ -21,6 +21,9 @@ Route::domain( 'dash.' . config( 'app.domain' ) )
      ->middleware( [ 'auth', 'verified' ] )
      ->group( function () {
          Route::get( '/', [ LinkController::class, 'index' ] )->name( 'dashboard' );
+
+         Route::resource( 'links', LinkController::class )
+              ->except( [ 'index' ] );
      } );
 
 /**
