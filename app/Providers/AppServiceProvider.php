@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Bijective\BijectiveTranslator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
@@ -16,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        $this->registerBijective();
     }
 
     /**
@@ -28,6 +29,13 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->registerInertia();
         $this->registerTelescope();
+    }
+
+    public function registerBijective()
+    {
+        $this->app->singleton( BijectiveTranslator::class, function ( $app ) {
+            return new BijectiveTranslator( config( 'app.shortcode.alphabet' ) );
+        } );
     }
 
     public function registerInertia()
