@@ -1,6 +1,11 @@
 <template>
     <div class="relative flex items-center">
-        <input class="flex-1 py-2 px-3 rounded border border-indigo-400 focus:outline-none" type="text" :value="link">
+        <input
+            class="flex-1 py-2 px-3 bg-gray-50 rounded border border-indigo-400 focus:outline-none"
+            type="text"
+            :value="link"
+            disabled
+        >
         <button
             class="absolute flex items-center px-2 right-0 top-0 bottom-0 bg-gray-200 hover:bg-indigo-200 text-gray-500 hover:text-indigo-700 rounded-tr rounded-br border-t border-b border-r border-indigo-400 group text-sm font-bold focus:outline-none"
             @click="doCopy"
