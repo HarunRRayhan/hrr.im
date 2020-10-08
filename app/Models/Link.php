@@ -51,8 +51,8 @@ class Link extends Model
             }
 
             do {
-                $code     = Shortcode::get();
-                $existing = $link->query()->whereRaw( "BINARY `slug`= ?", [ $code ] )->first();
+                $code = Shortcode::get();
+                $existing = $link->whereSlug( $code )->first();
                 if ( ! $existing ) {
                     break;
                 }
