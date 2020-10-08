@@ -19,9 +19,11 @@ class LinkController extends Controller
      */
     public function index( Request $request ): Response
     {
+        $links = ( $search = $request->search ) ? Link::search( $search )->paginate() : Link::latest()->paginate();
+
         return Inertia::render( 'Links/Index', [
             'filters' => $request->all( 'search' ),
-            'links'   => Link::search( $request->search )->paginate(),
+            'links'   => $links
         ] );
     }
 
