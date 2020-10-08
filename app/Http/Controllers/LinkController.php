@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Link;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -91,10 +92,12 @@ class LinkController extends Controller
      *
      * @param \App\Models\Link $link
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy( Link $link )
     {
-        //
+        $link->delete();
+
+        return Redirect::back()->with('success', 'Link deleted.');
     }
 }
