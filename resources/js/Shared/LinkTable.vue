@@ -41,7 +41,7 @@
                     </inertia-link>
                 </td>
                 <td class="w-1/4 max-w-2xl px-6 border-t">
-                    <link-copy :link="link.shortlink"/>
+                    <copy :link="link.shortlink"/>
                 </td>
                 <td class="border-t">
                     <div class="flex justify-center">
@@ -50,16 +50,12 @@
                     </div>
                 </td>
                 <td class="w-1/4 max-w-2xl px-6 border-t">
-                    <link-open :link="link.full_link"/>
+                    <open :link="link.full_link"/>
                 </td>
                 <td class="border-t w-px">
-                    <inertia-link
-                        class="px-4 flex items-center"
-                        href="/"
-                        tabindex="-1"
-                    >
+                    <button @click.prevent="$emit('deleting', link)">
                         <icon name="bin" class="block w-6 h-6 ill-gray-400 hover:fill-red-600"/>
-                    </inertia-link>
+                    </button>
                 </td>
             </tr>
             <tr v-if="!links.length">
@@ -71,8 +67,8 @@
 
 <script>
 import Icon from "./Icon";
-import LinkCopy from "./Pertials/LinkCopy";
-import LinkOpen from "./Pertials/LinkOpen";
+import Copy from "./Pertials/Links/Copy";
+import Open from "./Pertials/Links/Open";
 import Public from "./Components/Labels/Public";
 import Private from "./Components/Labels/Private";
 
@@ -80,8 +76,8 @@ export default {
     name: "LinkTable",
     components: {
         Icon,
-        LinkCopy,
-        LinkOpen,
+        Copy,
+        Open,
         Public,
         Private
     },
