@@ -191,6 +191,19 @@ return [
     |
     */
 
-    'aliases' => [], // I don't like aliases
+    'aliases'   => [
+        'Route' => Illuminate\Support\Facades\Route::class,
+    ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Short Code
+    |--------------------------------------------------------------------------
+    |
+    | Set alphabet and order them as you want. Mix it up for better result
+    |
+    */
+    'shortcode' => [
+        'alphabet' => env( 'SHORTCODE_ALPHABET', 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' ),
+    ]
 ];
