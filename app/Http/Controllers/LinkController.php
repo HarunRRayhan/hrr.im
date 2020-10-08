@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LinkStoreRequest;
 use App\Models\Link;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -31,11 +32,13 @@ class LinkController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function create()
+    public function create(): Response
     {
-        //
+        return Inertia::render( 'Links/Create', [
+            'app_url' => config( 'app.domain' )
+        ] );
     }
 
     /**
@@ -43,11 +46,13 @@ class LinkController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store( Request $request )
+    public function store( LinkStoreRequest $request )
     {
-        //
+        Link::create( $request->all() );
+
+        return Redirect::route( 'dashboard' )->with( 'success', 'Link Created Successfully!' );
     }
 
     /**
@@ -98,6 +103,6 @@ class LinkController extends Controller
     {
         $link->delete();
 
-        return Redirect::back()->with('success', 'Link deleted.');
+        return Redirect::back()->with( 'success', 'Link deleted.' );
     }
 }
