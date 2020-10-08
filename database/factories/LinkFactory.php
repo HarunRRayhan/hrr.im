@@ -24,16 +24,22 @@ class LinkFactory extends Factory
     {
         return [
             'label'       => $this->faker->sentence,
-            'slug'        => $this->faker->unique()->slug,
             'full_link'   => $this->faker->unique()->url,
             'description' => $this->faker->paragraph
         ];
     }
 
-    public function private()
+    public function private(): self
     {
         return $this->state( [
             'secret' => Str::random( 6 ),
+        ] );
+    }
+
+    public function slug( string $slug = null ): self
+    {
+        return $this->state( [
+            'slug' => $slug ?? $this->faker->unique()->slug,
         ] );
     }
 }
