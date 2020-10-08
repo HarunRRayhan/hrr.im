@@ -11,8 +11,17 @@
                 <span class="hidden md:inline">Shortlink</span>
             </inertia-link>
         </div>
-        <link-table :links="links.data"/>
+        <link-table
+            :links="links.data"
+            @deleting="confirmingDelete"
+        />
         <pagination :links="links.links"/>
+
+        <delete-modal
+            :show="deleting.confirming"
+            :link="deleting.link"
+            @close="dismissDeleteModal"
+        />
     </div>
 </template>
 
@@ -22,6 +31,7 @@ import AppLayout from '../../Layouts/AppLayout'
 import LinkTable from "../../Shared/LinkTable";
 import SearchFilter from "../../Shared/SearchFilter";
 import Pagination from "../../Shared/Pagination";
+import DeleteModal from "../../Shared/Pertials/Links/DeleteModal";
 
 export default {
     components: {
@@ -29,6 +39,7 @@ export default {
         LinkTable,
         SearchFilter,
         Pagination,
+        DeleteModal
     },
     metaInfo: {title: 'Dashboard'},
     layout: AppLayout,
@@ -41,12 +52,27 @@ export default {
             form: {
                 search: this.filters.search,
             },
+            deleting: {
+                confirming: false,
+                link: null,
+            },
         }
     },
     methods: {
         reset() {
             this.form = mapValues(this.form, () => null)
         },
+        confirmingDelete(link) {
+            this.deleting.link = link;
+            this.deleting.confirming = true;
+        },
+        dismissDeleteModal() {
+            this.deleting.confirming = false;
+            setTimeout(() => {
+                this.deleting.link = null;
+            }, 250)
+
+        }
     },
     watch: {
         form: {
