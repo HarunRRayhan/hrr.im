@@ -50,7 +50,7 @@ export default {
             handler: throttle(function () {
                 let query = pickBy(this.form)
                 this.$inertia.replace(route('dashboard', Object.keys(query).length ? query : {remember: 'forget'}))
-            }, 150),
+            }, 350),
             deep: true,
         },
     },
