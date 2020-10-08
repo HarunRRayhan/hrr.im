@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Actions\Bijective\Shortcode;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
@@ -22,14 +23,14 @@ use Laravel\Scout\Searchable;
  * @method static \Illuminate\Database\Eloquent\Builder|Link newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Link newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Link query()
- * @method static \Illuminate\Database\Eloquent\Builder|Link whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Link whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Link whereFullLink($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Link whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Link whereLabel($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Link whereSecret($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Link whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Link whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Link whereCreatedAt( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|Link whereDescription( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|Link whereFullLink( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|Link whereId( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|Link whereLabel( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|Link whereSecret( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|Link whereSlug( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|Link whereUpdatedAt( $value )
  * @mixin \Eloquent
  */
 class Link extends Model
@@ -39,6 +40,27 @@ class Link extends Model
     protected $guarded = [];
 
     protected $appends = [ 'shortlink', 'is_public' ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating( function ( self $link ) {
+            if ( $link->slug ) {
+                return;
+            }
+
+            do {
+                $code     = Shortcode::get();
+                $existing = $link->query()->whereRaw( "BINARY `slug`= ?", [ $code ] )->first();
+                if ( ! $existing ) {
+                    break;
+                }
+            } while ( true );
+
+            $link->slug = $code;
+        } );
+    }
 
     public function getShortlinkAttribute(): string
     {
