@@ -14,7 +14,7 @@ class LinkSeeder extends Seeder
      */
     public function run()
     {
-        Link::factory( 25 )->private()->create();
         Link::factory( 75 )->create();
+        Link::factory( 25 )->private()->create();
     }
 }
