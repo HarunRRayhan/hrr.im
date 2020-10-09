@@ -20,11 +20,6 @@ class LinkStoreRequest extends FormRequest
 
     public function prepareForValidation()
     {
-        // remove slug from request if not blank
-//        if ( $this->isEmptyString( 'slug' ) ) {
-//            $this->request->remove( 'slug' );
-//        }
-
         // prefix protocol for full link if missing
         if ( $this->filled( 'full_link' ) && ! Str::startsWith( $url = $this->get( 'full_link' ), [
                 'http://',
@@ -45,7 +40,8 @@ class LinkStoreRequest extends FormRequest
             'label'       => [ 'required', 'string', 'max:256' ],
             'full_link'   => [ 'required', 'url', 'max:256' ],
             'slug'        => [ 'nullable', 'alpha_dash', 'unique:links' ],
-            'description' => [ 'nullable', 'string' ]
+            'description' => [ 'nullable', 'string' ],
+            'private'     => [ 'nullable', 'boolean' ],
         ];
     }
 
@@ -59,6 +55,10 @@ class LinkStoreRequest extends FormRequest
     public function all( $keys = null )
     {
         $all = parent::all( $keys );
+        if ( ! empty( $all['private'] ) && $all['private'] ) {
+            $all['secret'] = Str::random( 6 );
+            unset( $all['private'] );
+        }
 
         return collect( $all )->filter()->toArray();
     }
