@@ -6,6 +6,7 @@ use App\Models\Link;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class CreateTest extends TestCase
@@ -129,6 +130,26 @@ class CreateTest extends TestCase
                  'description' => 'this is my description'
              ] )
              ->assertSessionHasNoErrors();
+    }
+
+    /** @test */
+    public function it_can_submit_with_secret()
+    {
+        $user = User::factory()->create();
+        $this->actingAs( $user )
+             ->post( route( 'links.store' ), [
+                 'label'       => 'My label',
+                 'full_link'   => 'example.com/this-is-my-link',
+                 'slug'        => 'my-test-slug',
+                 'description' => 'this is my description',
+                 'private'     => true,
+             ] )
+             ->assertSessionHasNoErrors();
+
+        $link = Link::whereSlug( 'my-test-slug' )->first();
+        $this->assertTrue( $link->slug === 'my-test-slug' );
+        $this->assertNotNull( $link->secret );
+        $this->assertTrue( 6 === Str::length( $link->secret ) );
     }
 
     /** @test */
