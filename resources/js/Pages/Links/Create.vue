@@ -41,6 +41,15 @@
                         label="Description (optional)"
                         placeholder="Link description goes here"
                     />
+
+                    <toggle :enabled="form.private" @toggle="form.private=$event">
+                        <span
+                            class="flex items-center"
+                        >
+                            <icon name="lock-closed" class="block w-4 h-4 fill-current mr-1"/>
+                            <span>Private Link</span>
+                        </span>
+                    </toggle>
                 </div>
                 <div class="px-8 py-4 bg-gray-100 border-t border-gray-200 flex justify-end items-center">
                     <loading-button :loading="sending" class="btn-indigo" type="submit">Add Shortlink</loading-button>
@@ -55,13 +64,17 @@ import AppLayout from "../../Layouts/AppLayout";
 import TextInput from "../../Shared/Components/Form/TextInput";
 import TextareaInput from "../../Shared/Components/Form/TextareaInput";
 import LoadingButton from "../../Shared/Components/LoadingButton";
+import Toggle from "../../Shared/Components/Buttons/Toggle";
+import Icon from "../../Shared/Icon";
 
 export default {
     name: "Create",
     components: {
         TextInput,
         TextareaInput,
-        LoadingButton
+        LoadingButton,
+        Toggle,
+        Icon,
     },
     metaInfo: {title: 'Create Link'},
     layout: AppLayout,
@@ -77,6 +90,7 @@ export default {
                 full_link: '',
                 slug: '',
                 description: '',
+                private: false,
             }
         }
     },
