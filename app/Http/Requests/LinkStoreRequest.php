@@ -13,20 +13,14 @@ class LinkStoreRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return Auth::check();
     }
 
-    public function prepareForValidation()
+    public function prepareForValidation(): void
     {
-        // prefix protocol for full link if missing
-        if ( $this->filled( 'full_link' ) && ! Str::startsWith( $url = $this->get( 'full_link' ), [
-                'http://',
-                'https://'
-            ] ) ) {
-            $this->merge( [ 'full_link' => "http://$url" ] );
-        }
+        $this->prefixFullLinkProtocol();
     }
 
     /**
@@ -34,14 +28,14 @@ class LinkStoreRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'label'       => [ 'required', 'string', 'max:256' ],
             'full_link'   => [ 'required', 'url', 'max:256' ],
             'slug'        => [ 'nullable', 'alpha_dash', 'unique:links' ],
             'description' => [ 'nullable', 'string' ],
-            'private'     => [ 'nullable', 'boolean' ],
+            'private'     => [ 'sometimes', 'boolean' ],
         ];
     }
 
@@ -52,7 +46,7 @@ class LinkStoreRequest extends FormRequest
      *
      * @return array
      */
-    public function all( $keys = null )
+    public function all( $keys = null ): array
     {
         $all = parent::all( $keys );
         if ( ! empty( $all['private'] ) && $all['private'] ) {
@@ -61,5 +55,20 @@ class LinkStoreRequest extends FormRequest
         }
 
         return collect( $all )->filter()->toArray();
+    }
+
+    protected function prefixFullLinkProtocol(): self
+    {
+        if (
+            $this->filled( 'full_link' ) &&
+            ! Str::startsWith( $url = $this->get( 'full_link' ), [
+                'http://',
+                'https://'
+            ] )
+        ) {
+            $this->merge( [ 'full_link' => "http://$url" ] );
+        }
+
+        return $this;
     }
 }
