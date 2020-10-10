@@ -72,11 +72,14 @@ class LinkController extends Controller
      *
      * @param \App\Models\Link $link
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function edit( Link $link )
+    public function edit( Link $link ): Response
     {
-        //
+        return Inertia::render( 'Links/Edit', [
+            'app_url' => config( 'app.domain' ),
+            'link'    => $link
+        ] );
     }
 
     /**
@@ -85,11 +88,13 @@ class LinkController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\Link $link
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update( Request $request, Link $link )
     {
-        //
+        $link->update( $request->all() );
+
+        return Redirect::route( 'dashboard' )->with( 'success', 'Link Updated Successfully!' );
     }
 
     /**
