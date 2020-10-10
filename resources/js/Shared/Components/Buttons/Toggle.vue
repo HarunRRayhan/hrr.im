@@ -2,11 +2,17 @@
     <div class="flex items-center justify-center w-full mb-24">
 
         <label
-            for="toogleA"
+            :for="id"
             class="flex items-center cursor-pointer"
         >
             <div class="relative">
-                <input id="toogleA" type="checkbox" class="hidden" @input="click"/>
+                <input
+                    :id="id"
+                    type="checkbox"
+                    class="hidden"
+                    @input="click"
+                    :checked="enabled"
+                />
                 <div
                     class="toggle__line w-10 h-4 bg-gray-400 rounded-full shadow-inner"
                 ></div>
@@ -30,6 +36,12 @@ export default {
         enabled: {
             type: Boolean,
             default: false,
+        },
+        id: {
+            type: String,
+            default() {
+                return `toggle-${this._uid}`
+            },
         }
     },
     methods: {
