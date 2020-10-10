@@ -61,11 +61,13 @@ class LinkController extends Controller
      *
      * @param \App\Models\Link $link
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function show( Link $link )
+    public function show( Link $link ): Response
     {
-        //
+        return Inertia::render( 'Links/Show', [
+            'link' => $link
+        ] );
     }
 
     /**
