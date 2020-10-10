@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LinkStoreRequest;
+use App\Http\Requests\LinkUpdateRequest;
 use App\Models\Link;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -50,7 +51,7 @@ class LinkController extends Controller
      */
     public function store( LinkStoreRequest $request )
     {
-        Link::create( $request->all() );
+        Link::create( $request->validated() );
 
         return Redirect::route( 'dashboard' )->with( 'success', 'Link Created Successfully!' );
     }
@@ -85,14 +86,14 @@ class LinkController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param LinkUpdateRequest $request
      * @param \App\Models\Link $link
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update( Request $request, Link $link )
+    public function update( LinkUpdateRequest $request, Link $link )
     {
-        $link->update( $request->all() );
+        $link->update( $request->validated() );
 
         return Redirect::route( 'dashboard' )->with( 'success', 'Link Updated Successfully!' );
     }
