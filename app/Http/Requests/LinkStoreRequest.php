@@ -2,12 +2,14 @@
 
 namespace App\Http\Requests;
 
+use App\Http\Requests\Concerns\Helper;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class LinkStoreRequest extends FormRequest
 {
+    use Helper;
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -39,36 +41,14 @@ class LinkStoreRequest extends FormRequest
         ];
     }
 
-    /**
-     * Get all of the input and files for the request.
-     *
-     * @param array|mixed|null $keys
-     *
-     * @return array
-     */
-    public function all( $keys = null ): array
+    public function validated(): array
     {
-        $all = parent::all( $keys );
-        if ( ! empty( $all['private'] ) && $all['private'] ) {
-            $all['secret'] = Str::random( 6 );
-            unset( $all['private'] );
+        $validated = parent::validated();
+        if ( ! empty( $validated['private'] ) && $validated['private'] ) {
+            $validated['secret'] = Str::random( 6 );
+            unset( $validated['private'] );
         }
 
-        return collect( $all )->filter()->toArray();
-    }
-
-    protected function prefixFullLinkProtocol(): self
-    {
-        if (
-            $this->filled( 'full_link' ) &&
-            ! Str::startsWith( $url = $this->get( 'full_link' ), [
-                'http://',
-                'https://'
-            ] )
-        ) {
-            $this->merge( [ 'full_link' => "http://$url" ] );
-        }
-
-        return $this;
+        return collect( $validated )->filter()->toArray();
     }
 }
