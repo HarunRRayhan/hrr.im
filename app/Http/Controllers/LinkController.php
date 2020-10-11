@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Statistics\ViewLinkStatistics;
 use App\Http\Requests\LinkStoreRequest;
 use App\Http\Requests\LinkUpdateRequest;
 use App\Models\Link;
+use App\Models\LinkStatistic;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -65,8 +67,14 @@ class LinkController extends Controller
      */
     public function show( Link $link ): Response
     {
+        $link->loadCount( 'statistics' );
+
         return Inertia::render( 'Links/Show', [
-            'link' => $link
+            'link'       => $link,
+            'statistics' => $link
+                ->statistics()
+                ->paginate( 25 )
+                ->transform( fn( LinkStatistic $statistics ) => app( ViewLinkStatistics::class )->get( $statistics ) )
         ] );
     }
 
@@ -111,6 +119,7 @@ class LinkController extends Controller
     {
         $link->delete();
 
-        return Redirect::back()->with( 'success', 'Link deleted.' );
+        return Redirect::route( 'dashboard' )
+                       ->with( 'success', 'Link deleted.' );
     }
 }

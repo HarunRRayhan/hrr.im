@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-
 /**
  * App\Models\LinkStatistic
  *
@@ -17,28 +16,32 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $to
  * @property string|null $user_agent
  * @property string|null $ip_address
+ * @property bool $success
  * @property \Illuminate\Support\Carbon $opened_at
+ * @property-read \App\Models\Link $link
  * @method static \Illuminate\Database\Eloquent\Builder|LinkStatistic newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|LinkStatistic newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|LinkStatistic query()
- * @method static \Illuminate\Database\Eloquent\Builder|LinkStatistic whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|LinkStatistic whereIpAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|LinkStatistic whereLinkId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|LinkStatistic whereOpenedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|LinkStatistic whereReferer($value)
- * @method static \Illuminate\Database\Eloquent\Builder|LinkStatistic whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|LinkStatistic whereTo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|LinkStatistic whereUserAgent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|LinkStatistic whereId( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|LinkStatistic whereIpAddress( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|LinkStatistic whereLinkId( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|LinkStatistic whereOpenedAt( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|LinkStatistic whereReferer( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|LinkStatistic whereSlug( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|LinkStatistic whereSuccess( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|LinkStatistic whereTo( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|LinkStatistic whereUserAgent( $value )
  * @mixin \Eloquent
- * @property-read \App\Models\Link $link
- * @property int $success
- * @method static \Illuminate\Database\Eloquent\Builder|LinkStatistic whereSuccess($value)
  */
 class LinkStatistic extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
+
+    protected $casts = [
+        'success' => 'boolean'
+    ];
 
     protected $dates = [
         'opened_at'
