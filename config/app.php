@@ -191,19 +191,29 @@ return [
     |
     */
 
-    'aliases'   => [
+    'aliases'       => [
         'Route' => Illuminate\Support\Facades\Route::class,
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | Short Code
+    | Home Redirect URL
     |--------------------------------------------------------------------------
     |
-    | Set alphabet and order them as you want. Mix it up for better result
+    | Set Redirect URL for the homepage
     |
     */
-    'shortcode' => [
-        'alphabet' => env( 'SHORTCODE_ALPHABET', 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' ),
-    ]
+    'home_redirect' => env( 'HOME_REDIRECT_URL', 'https://harun.dev' ),
+
+/*
+|--------------------------------------------------------------------------
+| Short Code
+|--------------------------------------------------------------------------
+|
+| Set alphabet and order them as you want. Mix it up for better result
+|
+*/
+'shortcode' => [
+    'alphabet' => env( 'SHORTCODE_ALPHABET', 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' ),
+]
 ];
