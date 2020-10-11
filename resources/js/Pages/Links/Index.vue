@@ -32,6 +32,7 @@ import LinkTable from "../../Shared/LinkTable";
 import SearchFilter from "../../Shared/SearchFilter";
 import Pagination from "../../Shared/Pagination";
 import DeleteModal from "../../Shared/Pertials/Links/DeleteModal";
+import deleteLink from "../../Mixins/deleteLink";
 
 export default {
     components: {
@@ -41,6 +42,7 @@ export default {
         Pagination,
         DeleteModal
     },
+    mixins: [deleteLink],
     metaInfo: {title: 'Dashboard'},
     layout: AppLayout,
     props: {
@@ -52,27 +54,12 @@ export default {
             form: {
                 search: this.filters.search,
             },
-            deleting: {
-                confirming: false,
-                link: null,
-            },
         }
     },
     methods: {
         reset() {
             this.form = mapValues(this.form, () => null)
         },
-        confirmingDelete(link) {
-            this.deleting.link = link;
-            this.deleting.confirming = true;
-        },
-        dismissDeleteModal() {
-            this.deleting.confirming = false;
-            setTimeout(() => {
-                this.deleting.link = null;
-            }, 250)
-
-        }
     },
     watch: {
         form: {
