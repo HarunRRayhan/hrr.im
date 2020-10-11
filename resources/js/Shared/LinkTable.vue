@@ -35,7 +35,7 @@
                 <td class="w-1/4 max-w-2xl border-t overflow-hidden">
                     <inertia-link
                         class="px-6 py-4 flex items-center focus:text-indigo-500"
-                        :href="route('profile.show')"
+                        :href="route('links.show', link)"
                     >
                         {{ link.label }}
                     </inertia-link>
