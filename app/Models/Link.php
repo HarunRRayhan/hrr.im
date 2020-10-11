@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Actions\Bijective\Shortcode;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Scout\Searchable;
 
 /**
@@ -32,6 +33,8 @@ use Laravel\Scout\Searchable;
  * @method static \Illuminate\Database\Eloquent\Builder|Link whereSlug( $value )
  * @method static \Illuminate\Database\Eloquent\Builder|Link whereUpdatedAt( $value )
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\LinkStatistic[] $statistics
+ * @property-read int|null $statistics_count
  */
 class Link extends Model
 {
@@ -51,7 +54,7 @@ class Link extends Model
             }
 
             do {
-                $code = Shortcode::get();
+                $code     = Shortcode::get();
                 $existing = $link->whereSlug( $code )->first();
                 if ( ! $existing ) {
                     break;
@@ -75,5 +78,10 @@ class Link extends Model
     public function toSearchableArray(): array
     {
         return $this->only( [ 'id', 'label', 'slug', 'full_link' ] );
+    }
+
+    public function statistics(): HasMany
+    {
+        return $this->hasMany( LinkStatistic::class );
     }
 }
