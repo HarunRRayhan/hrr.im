@@ -1,11 +1,6 @@
 import Vue from 'vue';
+import {char_limit, nl2br} from "../helpers";
 
-Vue.filter('char_limit', function (value, size) {
-    value = value.toString();
-    if (!value) return '';
+Vue.filter('char_limit', char_limit);
 
-    if (value.length <= size) {
-        return value;
-    }
-    return value.substr(0, size) + '...';
-});
+Vue.filter('nl2br', nl2br);
