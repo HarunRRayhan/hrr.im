@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Actions\Statistics\StoreLinkStatistic;
 use Bijective\BijectiveTranslator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -10,6 +11,10 @@ use Inertia\Inertia;
 
 class AppServiceProvider extends ServiceProvider
 {
+    public $singletons = [
+        StoreLinkStatistic::class => StoreLinkStatistic::class,
+    ];
+
     /**
      * Register any application services.
      *
