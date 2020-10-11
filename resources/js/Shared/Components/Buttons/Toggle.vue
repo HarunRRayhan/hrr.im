@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-center justify-center w-full mb-24">
+    <div class="flex items-center justify-center w-full pr-6 pb-8">
 
         <label
             :for="id"
