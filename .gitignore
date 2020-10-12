@@ -14,6 +14,7 @@ yarn-error.log
 public/js/
 public/css/
 public/*.json
+public/mix-manifest.json
 storage/debugbar/
 public/vendor/telescope/
 .phpstorm.meta.php

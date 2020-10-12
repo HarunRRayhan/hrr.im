@@ -26,14 +26,23 @@
                         <div class="ml-3 relative">
                             <jet-dropdown align="right" width="48">
                                 <template #trigger>
-                                    <button v-if="$page.jetstream.managesProfilePhotos"
-                                            class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
-                                        <img class="h-8 w-8 rounded-full object-cover"
-                                             :src="$page.user.profile_photo_url" :alt="$page.user.name"/>
+                                    <button
+                                        v-if="$page.jetstream.managesProfilePhotos"
+                                        class="flex items-center text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out"
+                                    >
+                                        <img
+                                            class="h-8 w-8 rounded-full object-cover"
+                                            :src="$page.user.profile_photo_url"
+                                            :alt="$page.user.name"
+                                        />
+                                        <span class="pl-1 pr-2">{{ $page.user.name }}</span>
+                                        <icon name="cheveron-down" class="w-4 h-4 mr-2 fill-current"/>
                                     </button>
 
-                                    <button v-else
-                                            class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                                    <button
+                                        v-else
+                                        class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out"
+                                    >
                                         <div>{{ $page.user.name }}</div>
 
                                         <div class="ml-1">
@@ -138,7 +147,7 @@
             <!-- Responsive Navigation Menu -->
             <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                 <div class="pt-2 pb-3 space-y-1">
-                    <jet-responsive-nav-link href="/dashboard" :active="$page.currentRouteName == 'dashboard'">
+                    <jet-responsive-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                         Dashboard
                     </jet-responsive-nav-link>
                 </div>
@@ -245,6 +254,7 @@ import JetDropdownLink from './../Jetstream/DropdownLink'
 import JetNavLink from './../Jetstream/NavLink'
 import JetResponsiveNavLink from './../Jetstream/ResponsiveNavLink'
 import FlashMessage from "../Shared/FlashMessage";
+import Icon from "../Shared/Icon";
 
 export default {
     name: "AppLayout",
@@ -256,6 +266,7 @@ export default {
         JetNavLink,
         JetResponsiveNavLink,
         FlashMessage,
+        Icon,
     },
 
     data() {
