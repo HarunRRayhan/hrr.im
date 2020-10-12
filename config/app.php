@@ -53,7 +53,7 @@ return [
     */
 
     'url'    => env( 'APP_URL', 'http://localhost' ),
-    'domain' => env( 'APP_DOMAIN', 'http://dash.localhost' ),
+    'domain' => env( 'APP_DOMAIN', 'localhost' ),
 
     'asset_url' => env( 'ASSET_URL', null ),
 
@@ -205,15 +205,15 @@ return [
     */
     'home_redirect' => env( 'HOME_REDIRECT_URL', 'https://harun.dev' ),
 
-/*
-|--------------------------------------------------------------------------
-| Short Code
-|--------------------------------------------------------------------------
-|
-| Set alphabet and order them as you want. Mix it up for better result
-|
-*/
-'shortcode' => [
-    'alphabet' => env( 'SHORTCODE_ALPHABET', 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' ),
-]
+    /*
+    |--------------------------------------------------------------------------
+    | Short Code
+    |--------------------------------------------------------------------------
+    |
+    | Set alphabet and order them as you want. Mix it up for better result
+    |
+    */
+    'shortcode'     => [
+        'alphabet' => env( 'SHORTCODE_ALPHABET', 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' ),
+    ]
 ];
