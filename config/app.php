@@ -53,7 +53,7 @@ return [
     */
 
     'url'    => env( 'APP_URL', 'http://localhost' ),
-    'domain' => env( 'APP_DOMAIN', 'dash.hrr.im' ),
+    'domain' => env( 'APP_DOMAIN', 'http://dash.localhost' ),
 
     'asset_url' => env( 'ASSET_URL', null ),
 
