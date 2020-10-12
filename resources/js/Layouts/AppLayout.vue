@@ -14,7 +14,8 @@
 
                         <!-- Navigation Links -->
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <jet-nav-link href="/" :active="$page.currentRouteName == 'dashboard'">
+
+                            <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                                 Dashboard
                             </jet-nav-link>
                         </div>
@@ -225,7 +226,7 @@
         <!-- Page Content -->
         <main>
             <div class="px-4 py-8 md:p-12 md:overflow-y-auto" scroll-region>
-                <flash-message />
+                <flash-message/>
                 <slot></slot>
             </div>
         </main>
