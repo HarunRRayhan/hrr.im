@@ -42,7 +42,7 @@
                         tabindex="-1"
                         type="button"
                         @click="confirmingDelete(link)"
-                    >Delete Contact
+                    >Delete Link
                     </button>
 
                     <inertia-link
@@ -50,7 +50,7 @@
                         :href="route('links.edit', link)"
                         tabindex="-1"
                     >
-                        Edit Contact
+                        Edit Link
                     </inertia-link>
                 </div>
             </div>
