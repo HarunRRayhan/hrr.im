@@ -3,9 +3,9 @@
         <div class="w-full flex items-center mb-4 px-2">
             <h3 class="font-bold text-2xl">Statistics</h3>
             <span
-                class="ml-2 text-sm font-bold bg-indigo-200 px-3 py-1 rounded-full text-indigo-700">{{
-                    clicks
-                }} Clicks</span>
+                class="ml-2 text-sm font-bold px-3 py-1 rounded-full"
+                :class="{'bg-indigo-200  text-indigo-700': clicks > 0, 'bg-red-200  text-red-700': !clicks}"
+            >{{ clicks }} Clicks</span>
         </div>
 
 
