@@ -1,4 +1,6 @@
 # HRR.im - Personalized Shortlink Generator
+[![Packagist License](https://img.shields.io/github/license/HarunRRayhan/hrr.im)](http://choosealicense.com/licenses/mit/)
+
 It's simple yet powerful shortlink generator using the Laravel Framework. It's saves statistics of each link clicks too. See [SCREENSHOTS](#screenshots) for UI design
 ## Installation
 Clone this app into your directory using git:
@@ -62,3 +64,6 @@ Please make sure to update tests as appropriate.
 ## Contributors
 - [Harun R Rayhan](https://github.com/HarunRRayhan)
 - All Other Contributors
+
+## License
+[MIT](./LICENSE.md)
