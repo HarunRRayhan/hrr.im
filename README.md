@@ -1,5 +1,5 @@
 # HRR.im - Personalized Shortlink Generator
-It's simple yet powerful shortlink generator using the Laravel Framework. It's saves statistics of each link clicks too
+It's simple yet powerful shortlink generator using the Laravel Framework. It's saves statistics of each link clicks too. See [SCREENSHOTS](#screenshots) for UI design
 ## Installation
 Clone this app into your directory using git:
 ```bash
@@ -43,6 +43,16 @@ And then run development command:
 ```bash
 $ npm run dev
 ```
+
+## Screenshots
+Dashboard:
+![Dashboard](./screenshots/dashboard.png)
+
+Add Shortlink:
+![Dashboard](./screenshots/add-link.png)
+
+Edit Shortlink:
+![Dashboard](./screenshots/edit-link.png)
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
