@@ -130,6 +130,7 @@ export default {
 
             const browsers = [
                 'chrome',
+                'firefox',
                 'safari',
                 'opera',
                 'edge',
