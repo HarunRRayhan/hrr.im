@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full mt-12">
+    <div class="w-full mt-6 md:mt-12">
         <div class="w-full flex items-center mb-4 px-2">
             <h3 class="font-bold text-2xl">Statistics</h3>
             <span

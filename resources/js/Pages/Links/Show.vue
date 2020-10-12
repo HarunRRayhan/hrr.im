@@ -6,8 +6,8 @@
             <span class="text-indigo-400 font-medium">/</span> Stats
         </h1>
 
-        <div class="flex items-start space-x-6">
-            <div class="flex-1 bg-white rounded shadow overflow-hidden">
+        <div class="md:flex md:items-start md:space-x-6">
+            <div class="md:flex-1 bg-white rounded shadow overflow-hidden">
                 <div class="p-8">
                     <div class="pb-1">
                         <public v-if="link.is_public"/>
@@ -54,7 +54,7 @@
                     </inertia-link>
                 </div>
             </div>
-            <div class="flex-1 bg-white rounded shadow overflow-hidden">
+            <div class="md:flex-1 mt-4 md:mt-0 bg-white rounded shadow overflow-hidden">
                 <link-prevue
                     :url="link.full_link"
                     cardWidth="100%"
