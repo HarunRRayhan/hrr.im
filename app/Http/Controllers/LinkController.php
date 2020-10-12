@@ -73,6 +73,7 @@ class LinkController extends Controller
             'link'       => $link,
             'statistics' => $link
                 ->statistics()
+                ->latest( 'opened_at' )
                 ->paginate( 25 )
                 ->transform( fn( LinkStatistic $statistics ) => app( ViewLinkStatistics::class )->get( $statistics ) )
         ] );
