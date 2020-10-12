@@ -1,4 +1,5 @@
 # HRR.im - Personalized Shortlink Generator
+![Build](https://github.com/HarunRRayhan/hrr.im/workflows/Build/badge.svg)
 [![Packagist License](https://img.shields.io/github/license/HarunRRayhan/hrr.im)](http://choosealicense.com/licenses/mit/)
 
 It's simple yet powerful shortlink generator using the Laravel Framework. It's saves statistics of each link clicks too. See [SCREENSHOTS](#screenshots) for UI design
